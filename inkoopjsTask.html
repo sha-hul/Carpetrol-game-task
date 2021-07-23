@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petrol_Game</title>
+</head>
+
+<body>
+  <button onclick="startGame()">Game Start</button>
+  <p id="gameResult"></p>
+  <script>
+    var gameResult = document.getElementById("gameResult");
+    let startGame = () => {
+      gameResult.textContent = " ";
+      playing();
+    }
+    let playing = () => {
+    // Initial Data.....
+      var refillPetrol = 30;
+      var initialPetrol = 50;
+    // function contains showresult into id "gameResult"  
+      function para1(passage) {
+        gameResult.innerHTML += passage;
+      }
+    // Creating New Array
+      var arr = new Array();
+    // Generating 6 random value for Petrol pumb 
+      for (var a = 1; a < 7; a++) {
+        let random = parseInt(Math.ceil(Math.random() * 100));
+        arr[a] = random;
+      }
+      let arrNumber = arr;
+    //   To Sort the Array
+      arrNumber = arrNumber.sort(function (a, b) { return a - b });
+      var kiloMeter = 0;
+      // Random pertrol Station is refillPetrolStation
+      let refillPetrolStation = arrNumber.map((value) => (value));;
+      var pumpLocation = () => (refillPetrolStation.includes(kiloMeter));
+    //   First Two Lines of Paragraph
+      para1(`Game started <br/> petrol pumps generated at ${arrNumber}<br/>`);
+      if (pumpLocation()) {
+        initialPetrol += refillPetrol;
+      }
+      let move = 1;
+      while (1) {
+        // Creating random value for Steps
+        let stepDistance = parseInt(Math.ceil(Math.random() * 6))
+        let distance = stepDistance;
+        kiloMeter += distance;
+        // 1 liter =0.5km average
+        var petrol = distance * 2;
+        initialPetrol -= petrol;
+        refillPetrolStation = arrNumber;
+        // petrol dry game over
+        if (initialPetrol < 0) {
+          para1(`Move ${move} - car at ${kiloMeter}km,petrol remaining 0,game over :(</br>`)
+          break;
+        }
+        // if you won the game
+        if (kiloMeter >= 100) {
+          para1(`You have successfully reached 100km <br/>
+          You Won The GAME</br>`);
+          break;
+        }
+        if (pumpLocation()) {
+          initialPetrol += refillPetrol;
+        }
+        para1(`Move ${move} - car at ${kiloMeter}km,petrol remaining ${initialPetrol}</br>`);
+        move++;
+      }
+    }
+  </script>
+</body>
+Sir,I'm already scheduled my interview on upcoming Thursday at 9:00AM for UI developer internship 
+</html>
